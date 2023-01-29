@@ -35,7 +35,7 @@ function getStorageData() {
   const parseData = JSON.parse(data);
 
   if (parseData) {
-    formObject.email.value = parseData.email;
+    formObject.email = parseData.email;
     formObject.message.value = parseData.message;
   }
 }
