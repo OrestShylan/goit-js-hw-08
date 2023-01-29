@@ -1,14 +1,20 @@
 import player from '@vimeo/player';
 
-const STORAGE_KEY = videoplayer - current - time;
-
+const STORAGE_KEY = 'videoplayer - current - time';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
-player.on('play', function () {
-  console.log('played the video!');
-});
+function saveTime(data) {
+  const time = data.seconds;
+  localStorage.saveTime(STORAGE_KEY, time);
+}
 
-player.getVideoTitle().then(function (title) {
-  console.log('title:', title);
-});
+function updateTime() {
+  const currentTime = localStorage.getitem(STORAGE_KEY);
+
+  if (currentTime) {
+    player.setCurrentTime(currentTime);
+  }
+}
+updateTime();
+player.on('timeupdate', throttle(aveTime));
